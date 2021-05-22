@@ -14,15 +14,15 @@ namespace EncryptionAlgorithmsWithDelegate
         {
             byte[] dataArray = ASCIIEncoding.ASCII.GetBytes(targetText);//Ascii formatında şifreleme yapar ve bit dizisine atar
             string encryptedText = Convert.ToBase64String(dataArray);//gelen bit dizisini 8 bitten 64 bite çevirir
-            Console.WriteLine("ToBase64 algoritması ile şifrelenen veri-----> " + targetText);
-            Console.WriteLine("ToBase64 algoritması ile şifreli veri-----> " + encryptedText);
+            Console.WriteLine("ToBase64 algoritması ile şifrelenen cümle-----> " + targetText);
+            Console.WriteLine("ToBase64 algoritması ile şifreli cümle-----> " + encryptedText);
             decryptionToBase64(encryptedText);
         }
         public static void decryptionToBase64(string encryptedText)
         {
             byte[] decodingTextArray = Convert.FromBase64String(encryptedText);//parametre ile gelen 64 bitlik veriyi 8 bitlik veriye çevirir ve bit dizisine atar
             string decodingTarget = ASCIIEncoding.ASCII.GetString(decodingTextArray);//decodingTextArray dizisini string formatında alır
-            Console.WriteLine("ToBase64 algoritması ile şifrelenen verinin deşifresi-----> " + decodingTarget);
+            Console.WriteLine("ToBase64 algoritması ile şifrelenen cümlenin deşifresi-----> " + decodingTarget);
         }
         #endregion
 
@@ -38,8 +38,8 @@ namespace EncryptionAlgorithmsWithDelegate
 
             }
             Console.WriteLine();
-            Console.WriteLine("CaesarEncryption algoritması ile şifrelenen veri-----> " + targetText);
-            Console.WriteLine("CaesarEncryption algoritması ile şifreli veri-----> " + getAll);//dizide girdiğimiz karakterlerin  üç karekter ötesini getirir.
+            Console.WriteLine("CaesarEncryption algoritması ile şifrelenen cümle-----> " + targetText);
+            Console.WriteLine("CaesarEncryption algoritması ile şifreli cümle-----> " + getAll);//dizide girdiğimiz karakterlerin  üç karekter ötesini getirir.
             decryptionCeaser(getAll);
         }
         public static void decryptionCeaser(string encryptedText)
@@ -51,13 +51,14 @@ namespace EncryptionAlgorithmsWithDelegate
             {
             getAll += Convert.ToChar(item2 - 3).ToString();
             }
-            Console.Write("CaesarEncryption algoritması ile şifrelenen verinin deşifresi-----> " + getAll);
+            Console.Write("CaesarEncryption algoritması ile şifrelenen cümlenin deşifresi-----> " + getAll);
         }
         #endregion
         static void Main(string[] args)
         {
             EncryptionAlgorithms encryption = new EncryptionAlgorithms(encryptionToBase64);
             encryption += encryptionCeaser;
+            Console.WriteLine("Şifrelenecek Cümleyi giriniz: ");
             encryption(Console.ReadLine());
         }
     }
